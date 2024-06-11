@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A26F67192C18276B0094DE9F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26F67182C18276B0094DE9F /* Theme.swift */; };
 		A28ACFFB2C1681C6001C93EF /* ScrumdingerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28ACFFA2C1681C6001C93EF /* ScrumdingerApp.swift */; };
 		A28ACFFD2C1681C6001C93EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28ACFFC2C1681C6001C93EF /* ContentView.swift */; };
 		A28ACFFF2C1681C6001C93EF /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28ACFFE2C1681C6001C93EF /* Item.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A26F67182C18276B0094DE9F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A28ACFF72C1681C6001C93EF /* Scrumdinger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrumdinger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28ACFFA2C1681C6001C93EF /* ScrumdingerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumdingerApp.swift; sourceTree = "<group>"; };
 		A28ACFFC2C1681C6001C93EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A26F67172C18275B0094DE9F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A26F67182C18276B0094DE9F /* Theme.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A28ACFEE2C1681C6001C93EF = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +106,7 @@
 		A28ACFF92C1681C6001C93EF /* Scrumdinger */ = {
 			isa = PBXGroup;
 			children = (
+				A26F67172C18275B0094DE9F /* Models */,
 				A28ACFFA2C1681C6001C93EF /* ScrumdingerApp.swift */,
 				A28ACFFC2C1681C6001C93EF /* ContentView.swift */,
 				A28ACFFE2C1681C6001C93EF /* Item.swift */,
@@ -261,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A28ACFFD2C1681C6001C93EF /* ContentView.swift in Sources */,
+				A26F67192C18276B0094DE9F /* Theme.swift in Sources */,
 				A28ACFFF2C1681C6001C93EF /* Item.swift in Sources */,
 				A28ACFFB2C1681C6001C93EF /* ScrumdingerApp.swift in Sources */,
 			);
