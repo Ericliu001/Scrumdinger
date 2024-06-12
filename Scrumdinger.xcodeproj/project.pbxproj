@@ -95,6 +95,7 @@
 		A277883F2C191D03001A65AD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A28ACFFC2C1681C6001C93EF /* MeetingView.swift */,
 				A27788402C1920AC001A65AD /* CardView.swift */,
 				A29D36942C19305C00B6316B /* ScrumsView.swift */,
 			);
@@ -127,7 +128,6 @@
 				A277883F2C191D03001A65AD /* Views */,
 				A26F67172C18275B0094DE9F /* Models */,
 				A28ACFFA2C1681C6001C93EF /* ScrumdingerApp.swift */,
-				A28ACFFC2C1681C6001C93EF /* MeetingView.swift */,
 				A28ACFFE2C1681C6001C93EF /* Item.swift */,
 				A27788422C19281C001A65AD /* TrailingIconLabelStyle.swift */,
 				A28AD0002C1681C7001C93EF /* Assets.xcassets */,
