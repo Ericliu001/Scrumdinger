@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MeetingView: View {
+    @State var scrumTimer = ScrumTimer()
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
