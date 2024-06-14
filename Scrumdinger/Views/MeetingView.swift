@@ -12,41 +12,40 @@ struct MeetingView: View {
     @State var scrumTimer = ScrumTimer()
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    var scrum: DailyScrum
 
     var body: some View {
         
-        VStack {
-            ProgressView(value: 5, total: 15)
-            
-            HStack{
-                VStack(alignment: .leading) {
-                    Text("Placeholder")
-                        .font(.caption)
-                    Label("300", systemImage: "hourglass.tophalf.fill")
-                }
-                Spacer()
-                VStack(alignment: .trailing) {
-                    Text("Seconds Remaining")
-                        .font(.caption)
-                    Label("600", systemImage: "hourglass.bottomhalf.fill")
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(scrum.theme.mainColor)
+            VStack {
+                MeetingHeaderView(secondsElapsed: scrumTimer.secondsElapsed,
+                                  secondsRemaining: scrumTimer.secondsRemaining,
+                                  theme: scrum.theme)
+                Circle()
+                    .strokeBorder(lineWidth: 24)
+
+                HStack {
+                    Text("Speaker 1 of 3")
+                    Spacer()
+                    Button(action: {}) {
+                        Image(systemName: "forward.fill")
+                    }
+                    .accessibilityLabel("Time remaining")
                 }
             }
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Time remaining")
-            .accessibilityValue("10 minutes")
-            Circle()
-                .strokeBorder(lineWidth: 24)
-
-            HStack {
-                Text("Speaker 1 of 3")
-                Spacer()
-                Button(action: {}) {
-                    Image(systemName: "forward.fill")
-                }
-                .accessibilityLabel("Time remaining")
+            .padding()
+            .foregroundColor(scrum.theme.accentColor)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear{
+                scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendees: scrum.attendees)
+                scrumTimer.startScrum()
+            }
+            .onDisappear{
+                scrumTimer.stopScrum()
             }
         }
-        .padding()
     }
 
     private func addItem() {
@@ -66,6 +65,6 @@ struct MeetingView: View {
 }
 
 #Preview {
-    MeetingView()
+    MeetingView(scrum: DailyScrum.sampleData[2])
         .modelContainer(for: Item.self, inMemory: true)
 }
