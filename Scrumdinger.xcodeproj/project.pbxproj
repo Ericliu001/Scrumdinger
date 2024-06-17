@@ -26,6 +26,7 @@
 		A29D369D2C1B031E00B6316B /* ThemePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D369C2C1B031E00B6316B /* ThemePicker.swift */; };
 		A29D369F2C1B09EE00B6316B /* ScrumTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D369E2C1B09EE00B6316B /* ScrumTimer.swift */; };
 		A29D36A12C1BBA7700B6316B /* MeetingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D36A02C1BBA7700B6316B /* MeetingHeaderView.swift */; };
+		A29D36A32C1BC77400B6316B /* MeetingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29D36A22C1BC77400B6316B /* MeetingFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		A29D369C2C1B031E00B6316B /* ThemePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePicker.swift; sourceTree = "<group>"; };
 		A29D369E2C1B09EE00B6316B /* ScrumTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumTimer.swift; sourceTree = "<group>"; };
 		A29D36A02C1BBA7700B6316B /* MeetingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingHeaderView.swift; sourceTree = "<group>"; };
+		A29D36A22C1BC77400B6316B /* MeetingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				A29D369A2C1B010B00B6316B /* ThemeView.swift */,
 				A29D369C2C1B031E00B6316B /* ThemePicker.swift */,
 				A29D36A02C1BBA7700B6316B /* MeetingHeaderView.swift */,
+				A29D36A22C1BC77400B6316B /* MeetingFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				A277883E2C1916EC001A65AD /* DailyScrum.swift in Sources */,
 				A29D369B2C1B010B00B6316B /* ThemeView.swift in Sources */,
+				A29D36A32C1BC77400B6316B /* MeetingFooterView.swift in Sources */,
 				A29D36972C19632800B6316B /* DetailView.swift in Sources */,
 				A29D36992C197A7600B6316B /* DetailEditView.swift in Sources */,
 				A28ACFFD2C1681C6001C93EF /* MeetingView.swift in Sources */,
