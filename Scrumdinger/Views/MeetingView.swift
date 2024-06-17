@@ -9,43 +9,45 @@ import SwiftUI
 import SwiftData
 
 struct MeetingView: View {
+    @State var scrumTimer = ScrumTimer()
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @Binding var scrum: DailyScrum
 
     var body: some View {
         
-        VStack {
-            ProgressView(value: 5, total: 15)
-            
-            HStack{
-                VStack(alignment: .leading) {
-                    Text("Placeholder")
-                        .font(.caption)
-                    Label("300", systemImage: "hourglass.tophalf.fill")
-                }
-                Spacer()
-                VStack(alignment: .trailing) {
-                    Text("Seconds Remaining")
-                        .font(.caption)
-                    Label("600", systemImage: "hourglass.bottomhalf.fill")
-                }
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(scrum.theme.mainColor)
+            VStack {
+                MeetingHeaderView(secondsElapsed: scrumTimer.secondsElapsed,
+                                  secondsRemaining: scrumTimer.secondsRemaining,
+                                  theme: scrum.theme)
+                Circle()
+                    .strokeBorder(lineWidth: 24)
+                MeetingFooterView(speakers: scrum.attendees.speakers, skipAction: scrumTimer.skipSpeaker)
             }
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Time remaining")
-            .accessibilityValue("10 minutes")
-            Circle()
-                .strokeBorder(lineWidth: 24)
-
-            HStack {
-                Text("Speaker 1 of 3")
-                Spacer()
-                Button(action: {}) {
-                    Image(systemName: "forward.fill")
-                }
-                .accessibilityLabel("Time remaining")
+            .padding()
+            .foregroundColor(scrum.theme.accentColor)
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear{
+               startScrum()
+            }
+            .onDisappear{
+               endScrum()
             }
         }
-        .padding()
+    }
+    
+    private func startScrum( ){
+        scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendees: scrum.attendees)
+        scrumTimer.startScrum()
+    }
+    
+    private func endScrum( ) {
+        scrumTimer.stopScrum()
+        let newHistory = History(attendees: scrum.attendees)
+        scrum.histories.insert(newHistory, at: 0)
     }
 
     private func addItem() {
@@ -65,6 +67,6 @@ struct MeetingView: View {
 }
 
 #Preview {
-    MeetingView()
+    MeetingView(scrum: .constant(DailyScrum.sampleData[2]))
         .modelContainer(for: Item.self, inMemory: true)
 }
