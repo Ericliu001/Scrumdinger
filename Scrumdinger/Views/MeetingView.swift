@@ -12,7 +12,7 @@ struct MeetingView: View {
     @State var scrumTimer = ScrumTimer()
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-    var scrum: DailyScrum
+    @Binding var scrum: DailyScrum
 
     var body: some View {
         
@@ -31,13 +31,23 @@ struct MeetingView: View {
             .foregroundColor(scrum.theme.accentColor)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear{
-                scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendees: scrum.attendees)
-                scrumTimer.startScrum()
+               startScrum()
             }
             .onDisappear{
-                scrumTimer.stopScrum()
+               endScrum()
             }
         }
+    }
+    
+    private func startScrum( ){
+        scrumTimer.reset(lengthInMinutes: scrum.lengthInMinutes, attendees: scrum.attendees)
+        scrumTimer.startScrum()
+    }
+    
+    private func endScrum( ) {
+        scrumTimer.stopScrum()
+        let newHistory = History(attendees: scrum.attendees)
+        scrum.histories.insert(newHistory, at: 0)
     }
 
     private func addItem() {
@@ -57,6 +67,6 @@ struct MeetingView: View {
 }
 
 #Preview {
-    MeetingView(scrum: DailyScrum.sampleData[2])
+    MeetingView(scrum: .constant(DailyScrum.sampleData[2]))
         .modelContainer(for: Item.self, inMemory: true)
 }
