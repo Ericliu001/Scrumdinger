@@ -36,15 +36,16 @@ struct ErrorView: View {
             }
         }
     }
-}
-
-#Preview {
+    
     enum SampleError: Error {
         case errorRequired
     }
+}
+
+#Preview {
     
     var wrapper: ErrorWrapper {
-        ErrorWrapper(error: SampleError.errorRequired, guidance: "You can safely ignore this error.")
+        ErrorWrapper(error: ErrorView.SampleError.errorRequired, guidance: "You can safely ignore this error.")
     }
     
     return ErrorView(errorWrapper: wrapper)

@@ -40,6 +40,7 @@ struct ScrumdingerApp: App {
                 .task {
                     do {
                         try await store.load()
+//                        throw ErrorView.SampleError.errorRequired
                     } catch {
                         errorWrapper = ErrorWrapper(error: error, guidance: "Scrumdinger will load sample data and continue.")
                     }
