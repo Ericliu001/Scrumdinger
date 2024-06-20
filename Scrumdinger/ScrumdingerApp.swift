@@ -10,7 +10,8 @@ import SwiftData
 
 @main
 struct ScrumdingerApp: App {
-    @State private var scrums = DailyScrum.sampleData
+    @State private var store: ScrumStore = ScrumStore()
+    @State private var errorWrapper: ErrorWrapper?
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -27,7 +28,28 @@ struct ScrumdingerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ScrumsView(scrums: $scrums)
+            ScrumsView(scrums: $store.scrums) {
+                Task {
+                    do {
+                        try await store.save(scrums: store.scrums)
+                    } catch {
+                        errorWrapper = ErrorWrapper(error: error, guidance: "Try again later.")
+                    }
+                }
+            }
+                .task {
+                    do {
+                        try await store.load()
+//                        throw ErrorView.SampleError.errorRequired
+                    } catch {
+                        errorWrapper = ErrorWrapper(error: error, guidance: "Scrumdinger will load sample data and continue.")
+                    }
+                }
+                .sheet(item: $errorWrapper) {
+                    store.scrums = DailyScrum.sampleData
+                } content: { wrapper in
+                    ErrorView(errorWrapper: wrapper)
+                }
         }
         .modelContainer(sharedModelContainer)
     }
